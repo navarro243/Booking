@@ -2,6 +2,7 @@ package com.aluraLatam.Booking.service.Libro;
 
 import com.aluraLatam.Booking.dto.AutorDTO;
 import com.aluraLatam.Booking.model.Autor;
+import com.aluraLatam.Booking.model.Libro;
 import com.aluraLatam.Booking.repository.AutorRepository;
 import com.aluraLatam.Booking.repository.LibroRepository;
 import com.aluraLatam.Booking.service.ConvierteDatos;
@@ -18,15 +19,18 @@ public class AutorService {
     private AutorRepository autorRepository;
 
 
-    @Autowired
-    public AutorService(AutorRepository autorRepository) {
-        this.autorRepository = autorRepository;
-    }
 
 
 
     public List<AutorDTO> listarAutores(){
         List<Autor> autores = autorRepository.findAll();
+        return convertir.ConvertirAutor(autores);
+    }
+
+    public List<AutorDTO> listarAutoresPorAno(Integer anoABuscar){
+        List<Autor> autores = autorRepository.listarAutoresPorAno(anoABuscar);
+        System.out.println(1);
+
         return convertir.ConvertirAutor(autores);
     }
 

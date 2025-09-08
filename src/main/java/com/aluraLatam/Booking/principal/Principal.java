@@ -36,6 +36,7 @@ public class Principal {
                 1)Buscar un libro Nuevo
                 2)Listar todos los Libros buscados
                 3)Listar Autores
+                4)Listar Autores vivos en X año
                 
                 0)Salir
                 """);
@@ -58,9 +59,13 @@ public class Principal {
                 case 3:
                     listarAutores();
                     break;
+                case 4:
+                    listarAutoresPorAno();
+                    break;
 
                 case 0:
                     System.out.println("Gracias por su uso");
+                    opc = 0;
                     break;
 
                 default:
@@ -110,6 +115,19 @@ public class Principal {
         autores.forEach(System.out::println);
 
     }
+
+    private void listarAutoresPorAno(){
+        System.out.println("Ingrese el año que desea buscar");
+        Integer anoABuscar = teclado.nextInt();
+
+        List<AutorDTO> autores = autorController.listarAutoresPorAno(anoABuscar);
+        System.out.println(3);
+        autores.forEach(System.out::println);
+
+
+    }
+
+
 
 
 }
