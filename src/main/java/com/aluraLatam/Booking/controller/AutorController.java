@@ -23,4 +23,10 @@ public class AutorController {
     public List<AutorDTO> listarAutores(){
         return  service.listarAutores();
     }
+
+    public List<AutorDTO> listarAutoresPorAno(Integer anoABuscar){
+        System.out.println(2);
+        return service.listarAutoresPorAno(anoABuscar);
+    }
+
 }
