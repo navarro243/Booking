@@ -1,6 +1,8 @@
 package com.aluraLatam.Booking.principal;
 
+import com.aluraLatam.Booking.controller.AutorController;
 import com.aluraLatam.Booking.controller.LibroController;
+import com.aluraLatam.Booking.dto.AutorDTO;
 import com.aluraLatam.Booking.dto.LibroDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,13 @@ public class Principal {
 
     private final Scanner teclado = new Scanner(System.in);
     public LibroController libroController;
+    public AutorController autorController;
 
     @Autowired
-    public Principal(LibroController libroController) {
+    public Principal(LibroController libroController, AutorController autorController) {
         this.libroController = libroController;
+        this.autorController = autorController;
+
     }
 
 
@@ -50,9 +55,17 @@ public class Principal {
                 case 2:
                     listarLibros();
                     break;
+                case 3:
+                    listarAutores();
+                    break;
+
+                case 0:
+                    System.out.println("Gracias por su uso");
+                    break;
 
                 default:
                     System.out.println("Opcion no valida");
+                    break;
 
 
 
@@ -88,6 +101,13 @@ public class Principal {
 
         libros.forEach(System.out::println);
 
+
+    }
+
+    private void listarAutores(){
+        List<AutorDTO> autores = autorController.listarAutores();
+
+        autores.forEach(System.out::println);
 
     }
 
