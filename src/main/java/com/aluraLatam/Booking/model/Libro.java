@@ -1,5 +1,6 @@
 package com.aluraLatam.Booking.model;
 
+import com.aluraLatam.Booking.dto.LibroDTO;
 import jakarta.persistence.*;
 
 import java.util.Collections;
@@ -15,7 +16,7 @@ public class Libro {
     @Column(unique = true)
     private String titulo;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "libro_autor",
             joinColumns = @JoinColumn(name = "libro_id"),
@@ -26,20 +27,20 @@ public class Libro {
     private List<String> lenguajes;
     private Long numeroDeDescargas;
 
-    public Libro(List<LibroDatos> libroDatos) {
+    public Libro(List<LibroDTO> libroDatos) {
         libroDatos.stream()
                 .map(e -> new Libro(e));
     }
 
-    public Libro(LibroDatos libroDatos) {
+    public Libro(LibroDTO libroDatos) {
         this.titulo = libroDatos.titulo();
         this.autores = Collections.singletonList(new Autor(libroDatos.autores()));
         this.lenguajes = libroDatos.lenguajes();
         this.numeroDeDescargas = libroDatos.numeroDeDescargas();
     }
 
-//    public libro(){}
-
+    public Libro() {
+    }
 
     public String getTitulo() {
         return titulo;

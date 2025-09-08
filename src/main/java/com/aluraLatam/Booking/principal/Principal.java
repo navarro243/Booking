@@ -6,21 +6,22 @@ import com.aluraLatam.Booking.dto.LibroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Component
 public class Principal {
 
 
-    private Scanner teclado = new Scanner(System.in);
-    private final LibroController libroController;
-
-
+    private final Scanner teclado = new Scanner(System.in);
+    public LibroController libroController;
 
     @Autowired
-    public Principal(LibroController libroController){
+    public Principal(LibroController libroController) {
         this.libroController = libroController;
-    };
+    }
+
+
 
     public void mostraMenu(){
 
@@ -28,6 +29,8 @@ public class Principal {
         while (opc != 0) {
             System.out.println("""
                 1)Buscar un libro Nuevo
+                2)Listar todos los Libros buscados
+                3)Listar Autores
                 
                 0)Salir
                 """);
@@ -41,9 +44,17 @@ public class Principal {
 
             switch (opc) {
                 case 1:
-//                    buscarUnNuevoLibro();
-                    System.out.println(mensaje());
+                    buscarUnNuevoLibro();
                     break;
+
+                case 2:
+                    listarLibros();
+                    break;
+
+                default:
+                    System.out.println("Opcion no valida");
+
+
 
             }
         }
@@ -51,7 +62,7 @@ public class Principal {
     }
 
     public void buscarUnNuevoLibro(){
-         LibroDTO libroUsuario = getLibro();
+        LibroDTO libroUsuario = getLibro();
         System.out.printf("""
                 ------------------------
                 Nombre Libro: %s
@@ -59,7 +70,7 @@ public class Principal {
                 Idiomas: %s
                 Numero de descargas: %d
                 
-                """,  libroUsuario.nombreLibro(), libroUsuario.nombreAutor(),  libroUsuario.idiomas(), libroUsuario.numeroDescargas());
+                """,  libroUsuario.titulo(), libroUsuario.autores(),  libroUsuario.lenguajes(), libroUsuario.numeroDeDescargas());
 
     }
 
@@ -67,12 +78,18 @@ public class Principal {
         System.out.println("Ingrese el nombre del libro");
         var nombreLibro = teclado.nextLine();
 
-        LibroDTO respuesta = libroController.buscarserieWeb(nombreLibro);
+        return libroController.buscarLibroWeb(nombreLibro);
 
-        return respuesta;
     }
 
-    private String mensaje(){
-        return libroController.mensaje();
+    private void listarLibros(){
+
+        List<LibroDTO> libros = libroController.listarLibros();
+
+        libros.forEach(System.out::println);
+
+
     }
+
+
 }

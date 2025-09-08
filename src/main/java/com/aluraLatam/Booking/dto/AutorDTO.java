@@ -1,16 +1,13 @@
-package com.aluraLatam.Booking.model;
+package com.aluraLatam.Booking.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record AutorDatos(
-
+public record AutorDTO(
         @JsonAlias("name") String nombre,
         @JsonAlias("birth_year") Integer fechaNacimiento,
         @JsonAlias("death_year") Integer fechaMuerte
-
 ) {
 }

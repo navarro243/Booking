@@ -1,6 +1,7 @@
 package com.aluraLatam.Booking.model;
 
 
+import com.aluraLatam.Booking.dto.AutorDTO;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,17 +18,19 @@ public class Autor {
     private Integer fechaMuerte;
 
 
-    public Autor(List<AutorDatos> autorDatos) {
-        autorDatos.stream()
-                .map(e -> new Autor(e));
-    }
-    public Autor(AutorDatos autorDatos){
-        this.fechaMuerte = autorDatos.fechaMuerte();
-        this.fechaNacimiento = autorDatos.fechaNacimiento();
-        this.nombreAutor = autorDatos.nombre();
+    public Autor(List<AutorDTO> autorDatos) {
+        if (autorDatos != null && !autorDatos.isEmpty()) {
+            AutorDTO firstAutor = autorDatos.get(0);
+            this.fechaMuerte = firstAutor.fechaMuerte();
+            this.fechaNacimiento = firstAutor.fechaNacimiento();
+            this.nombreAutor = firstAutor.nombre();
+        }
     }
 
 
+
+    public Autor() {
+    }
 
     public String getNombreAutor() {
         return nombreAutor;
