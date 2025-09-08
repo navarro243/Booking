@@ -11,6 +11,7 @@ public class BookingApplication implements CommandLineRunner {
 
 	public Principal principal;
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(BookingApplication.class, args);
 	}

@@ -64,21 +64,21 @@ public class LibroService {
 
         List<Libro> librosAlmacenados = libroRepository.findAll();
 
-        return ConvertirLibro(librosAlmacenados);
+        return convertir.ConvertirLibro(librosAlmacenados);
 
     }
 
-    private List<LibroDTO> ConvertirLibro( List<Libro> libro ){
-        return libro.stream()
-                .map(s -> new LibroDTO(s.getTitulo(), ConvertirAutor(s.getAutores()), s.getLenguajes(), s.getNumeroDeDescargas()))
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    private List<AutorDTO> ConvertirAutor(List<Autor> autor){
-        return autor.stream()
-                .map(s -> new AutorDTO(s.getNombreAutor(), s.getFechaNacimiento(), s.getFechaMuerte()))
-                .collect(Collectors.toUnmodifiableList());
-    }
+//    private List<LibroDTO> ConvertirLibro( List<Libro> libro ){
+//        return libro.stream()
+//                .map(s -> new LibroDTO(s.getTitulo(), ConvertirAutor(s.getAutores()), s.getLenguajes(), s.getNumeroDeDescargas()))
+//                .collect(Collectors.toUnmodifiableList());
+//    }
+//
+//    private List<AutorDTO> ConvertirAutor(List<Autor> autor){
+//        return autor.stream()
+//                .map(s -> new AutorDTO(s.getNombreAutor(), s.getFechaNacimiento(), s.getFechaMuerte()))
+//                .collect(Collectors.toUnmodifiableList());
+//    }
 
 
 
