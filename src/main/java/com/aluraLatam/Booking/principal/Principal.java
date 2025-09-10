@@ -38,6 +38,7 @@ public class Principal {
                 3)Listar Autores
                 4)Listar Autores vivos en X año
                 
+                
                 0)Salir
                 """);
             try{
@@ -62,6 +63,7 @@ public class Principal {
                 case 4:
                     listarAutoresPorAno();
                     break;
+
 
                 case 0:
                     System.out.println("Gracias por su uso");
@@ -121,7 +123,7 @@ public class Principal {
         Integer anoABuscar = teclado.nextInt();
 
         List<AutorDTO> autores = autorController.listarAutoresPorAno(anoABuscar);
-        System.out.println(3);
+
         autores.forEach(System.out::println);
 
 

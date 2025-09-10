@@ -29,7 +29,7 @@ public class AutorService {
 
     public List<AutorDTO> listarAutoresPorAno(Integer anoABuscar){
         List<Autor> autores = autorRepository.listarAutoresPorAno(anoABuscar);
-        System.out.println(1);
+
 
         return convertir.ConvertirAutor(autores);
     }
